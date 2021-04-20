@@ -5,7 +5,7 @@ const productos = [
     brand: "Asus",
     price: 239.999,
     descrive:
-      "Memoria RAM 16 GB, Almacenamiento 512 GB, Procesador AMD Ryzen 7, Tamaño de la pantalla: 15.6 ",
+      'Memoria RAM 16 GB, Almacenamiento 512 GB, Procesador AMD Ryzen 7, Tamaño de la pantalla: 15.6 "',
     urlImg:
       "https://res.cloudinary.com/ddlokqonz/image/upload/v1617799558/notebooks/AsusPro_ameonm.webp",
     stock: 2,
