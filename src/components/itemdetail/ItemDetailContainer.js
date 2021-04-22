@@ -11,9 +11,10 @@ const ItemDetailContainer = () => {
 
   useEffect(() => {
     const db = getFirestore();
-    
+
     const itemCollection = db.collection("categorias");
     const itemcito = itemCollection.doc(id);
+    console.log(itemcito);
 
     itemcito
       .get()
@@ -23,7 +24,7 @@ const ItemDetailContainer = () => {
           return;
         }
         console.log("Item encontrado");
-        console.log(doc.data())
+        console.log(doc.data());
         setItem({ id: doc.id, ...doc.data() });
       })
       .catch((error) => {
@@ -32,7 +33,7 @@ const ItemDetailContainer = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [id]);
 
   return (
     <div className="container">
@@ -46,7 +47,6 @@ const ItemDetailContainer = () => {
 
 export default ItemDetailContainer;
 
-
 /* useEffect(() => {
       new Promise((todoBien, todoMal) => {
           setTimeout(() => {
@@ -55,4 +55,3 @@ export default ItemDetailContainer;
         }, 2000);
       }).then((resultado) => setItem(resultado));
     }); */
-
