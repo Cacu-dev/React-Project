@@ -20,12 +20,12 @@ const ItemListContainer = () => {
         if (resp.size === 0) {
           console.log("No se encuentran resultados");
         }
-        setItems(resp.docs.map((doc) => doc.data()));
+        setItems(resp.docs.map((p) => ({id:p.id, ...p.data()})));
       })
       .catch((error) => {
         console.log("error encontrado", error);
       });
-  }, []);
+  }, [brand]);
 
   /* useEffect(() => {
     new Promise((todoBien, todoMal) => {
