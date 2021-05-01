@@ -3,6 +3,7 @@ import NavBar from "../components/navbar/NavBar";
 import ItemListContainer from "../components/itemlist/ItemListContainer";
 import ItemDetailContainer from "../components/itemdetail/ItemDetailContainer";
 import Cart from "../components/cart/Cart";
+import Checkout from "../components/checkout/Checkout";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 const RouterApp = () => {
@@ -11,6 +12,9 @@ const RouterApp = () => {
       <div>
         <NavBar />
         <Switch>
+          <Route path="/Checkout">
+            <Checkout />
+          </Route>
           <Route path="/Cart">
             <Cart />
           </Route>

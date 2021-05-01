@@ -29,7 +29,7 @@ const CountContainer = ({ item }) => {
       <ItemCount initial={1} stock={available} onAdd={onAdd} />
       <Link to="/Cart">
         <button className="btn btn-primary pl-10 pr-10 mt-2 mb-5 pl-3 pr-3">
-          Finalizar Compra
+          Ir al carrito
         </button>
       </Link>
     </div>

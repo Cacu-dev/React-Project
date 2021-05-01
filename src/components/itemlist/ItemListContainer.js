@@ -8,11 +8,12 @@ const ItemListContainer = () => {
   const [items, setItems] = useState([]);
   const { brand } = useParams();
 
-  console.log(brand);
-
+  
   useEffect(() => {
     const db = getFirestore();
-    const categoryCollection = db.collection("categorias");
+    const categoryCollection = brand
+      ? db.collection("categorias").where("brand", "==", brand)
+      : db.collection("categorias");
 
     categoryCollection
       .get()
@@ -20,12 +21,13 @@ const ItemListContainer = () => {
         if (resp.size === 0) {
           console.log("No se encuentran resultados");
         }
-        setItems(resp.docs.map((p) => ({id:p.id, ...p.data()})));
+        setItems(resp.docs.map((p) => ({ id: p.id, ...p.data() })));
       })
       .catch((error) => {
         console.log("error encontrado", error);
       });
   }, [brand]);
+
 
   /* useEffect(() => {
     new Promise((todoBien, todoMal) => {
