@@ -48,6 +48,10 @@ aplicación en react y ejecutar el comando npm install -g create-react-app.
 
 * Firebase: Utilizado para crear la base de datos del proyecto y las órdenes de compras.
 
+## Gif de compra
+
+* Archivo GIF con el recorrido completo de una compra https://res.cloudinary.com/ddlokqonz/image/upload/v1620014263/notebooks/React-Gif_s27hjb.gif
+
 ## Autor ✒️
 
 Facundo Manresa.
