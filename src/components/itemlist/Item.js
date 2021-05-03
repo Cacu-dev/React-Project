@@ -6,7 +6,7 @@ const Item = ( items ) => {
     //<div className="card" style={{ width: "18rem" }}>
     <Link to={`/item/${id}`}>
       <div>
-        <div className="row row-cols-1 mr-2">
+        <div className="row-cols-1 mr-2">
           <div className="col mb-4">
             <div className="card h-100">
               <img src={urlImg} className="card-img-top" alt="Imagen" />

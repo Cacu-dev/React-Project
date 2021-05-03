@@ -15,7 +15,7 @@ const ItemDetail = ({ item }) => {
               </h5>
               <p className="card-text">{descrive}</p>
               <p className="card-text">
-                <small className="text-muted">{`$ ${price}`}</small>
+                <h3 className="text-muted">{`$ ${price}`}</h3>
               </p>
             </div>
           </div>

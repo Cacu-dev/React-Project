@@ -1,45 +1,88 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import CartContext from "../../context/CartContext";
 import firebase from "firebase/app";
-import { useState } from "react";
 import { getFirestore } from "../../configs/firebase";
 import "firebase/firestore";
+import Swal from "sweetalert2";
 
 const Checkout = () => {
   const { cart } = useContext(CartContext);
   console.log(cart);
   const [db, setDb] = useState(getFirestore);
   const [id, setId] = useState();
-  const [buyer, setBuyer] = useState({name:"", phone:"", email:""});
+  const [buyer, setBuyer] = useState({ name: "", phone: "", email: "",email2:"" });
+
+  let total = 0;
+
+  for (let i = 0; i < cart.length; i++) {
+    total = total + cart[i].item.price * cart[i].quantity;
+  }
 
   const handleInputChange = (e) => {
-    
     e.preventDefault();
-    setBuyer({...buyer,[e.target.name]:e.target.value})
-
-  }
+    setBuyer({ ...buyer, [e.target.name]: e.target.value });
+  };
 
   const list = cart.map((item) => ({
     id: item.item.id,
     brand: item.item.brand,
     model: item.item.model,
     price: item.item.price,
+    quantity: item.quantity,
   }));
 
   const Create = () => {
-    const newOrder = {
-      buyer: buyer,
-      items: list,
-      date: firebase.firestore.Timestamp.fromDate(new Date()),
-      total: 2000,
-    };
-    const orders = db.collection("orders");
+    if (buyer.mail === buyer.mail2) {
+      const newOrder = {
+        buyer: buyer,
+        items: list,
+        date: firebase.firestore.Timestamp.fromDate(new Date()),
+        total: `$${total}`,
+      };
+      const orders = db.collection("orders");
 
-    orders.add(newOrder).then((resp) => {
-      console.log(resp);
-      console.log(resp.id);
-      setId(resp.id);
-    });
+      orders
+        .add(newOrder)
+        .then((resp) => {
+          console.log(resp);
+          console.log(resp.id);
+          setId(resp.id);
+          Swal.fire({
+            title: "Felicitaciones por su compra.",
+            text: `Su ID de compra es: ${resp.id}`,
+            icon: "success",
+            button: "Aceptar",
+          });
+        })
+        .catch(() => {
+          Swal.fire({
+            title: "Opps!!",
+            text:
+              "Lo sentimos, en este momento no podesmo realizar esta transacción.",
+            icon: "error",
+            button: "Aceptar",
+          });
+        });
+    } else {
+      Swal.fire({
+        title: "Opps!!",
+        text:"El Email ingresado es incorrecto",
+        icon: "error",
+        button: "Aceptar",
+      });
+     };
+
+    
+
+    /* const Update = () => {
+
+      const categorias = db.collection("categorias").doc(id);
+      const stockCategory = categorias.doc(stock);
+      const getStock = stockCategory.get()
+      const updateObject = { stock: getStock - quantity };
+      categorias.update(updateObject);
+
+    }; */
   };
 
   return (
@@ -72,6 +115,15 @@ const Checkout = () => {
             onChange={handleInputChange}
             type="email"
             name="email"
+          />
+        </label>
+        <label className="ml-5">
+          Ingrese nuevamente su Email:
+          <input
+            className="ml-2"
+            onChange={handleInputChange}
+            type="email"
+            name="email2"
           />
         </label>
       </form>

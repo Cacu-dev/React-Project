@@ -36,7 +36,7 @@ const ItemDetailContainer = () => {
   }, [id]);
 
   return (
-    <div className="container">
+    <div className="container mt-3">
       <h2>Detalle</h2>
       <hr />
       <br />

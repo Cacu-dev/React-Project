@@ -17,27 +17,39 @@ const Cart = () => {
         <h3>Carrito De Compras</h3>
         <div className="card w-100">
           {cart.length === 0 ? (
-            <h5>Lo sentimos. El carro está vacío!</h5>
+            <h5 className="mt-3 mb-3">Lo sentimos. El carro está vacío!</h5>
           ) : (
             cart.map((item, key) => <ItemCart key={key} {...item} />)
           )}
         </div>
-        <Link to="/Checkout">
-          <button className="btn btn-primary mt-3 mb-3">Comprar</button>
-        </Link>
-        <Link to="/">
-          <button className="btn btn-success mt-3 mb-3 ml-3">
-            Seguir comprando
-          </button>
-        </Link>
-        <button
-          className="btn btn-danger mt-3 mb-3 ml-3"
-          onClick={() => clear()}
-        >
-          Vaciar carrito
-        </button>
+        <div className="mt-3">
+          <h3>TOTAL: ${total}</h3>
+        </div>
+        {cart.length === 0 ? (
+          <Link to="/">
+            <button className="btn btn-success mt-3 mb-3">
+              Seguir comprando
+            </button>
+          </Link>
+        ) : (
+          <>
+            <Link to="/Checkout">
+              <button className="btn btn-primary mt-3 mb-3">Comprar</button>
+            </Link>
+            <Link to="/">
+              <button className="btn btn-success mt-3 mb-3 ml-3">
+                Seguir comprando
+              </button>
+            </Link>
+            <button
+              className="btn btn-danger mt-3 mb-3 ml-3"
+              onClick={() => clear()}
+            >
+              Vaciar carrito
+            </button>
+          </>
+        )}
       </div>
-      <h3>TOTAL: ${total}</h3>
     </div>
   );
 };
