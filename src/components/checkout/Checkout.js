@@ -8,8 +8,8 @@ import Swal from "sweetalert2";
 const Checkout = () => {
   const { cart } = useContext(CartContext);
   console.log(cart);
-  const [db, setDb] = useState(getFirestore);
-  const [id, setId] = useState();
+  const [db] = useState(getFirestore);
+  const [, setId] = useState();
   const [buyer, setBuyer] = useState({ name: "", phone: "", email: "",email2:"" });
 
   let total = 0;
